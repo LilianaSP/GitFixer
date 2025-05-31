@@ -107,4 +107,3 @@ if __name__ == "__main__":
 
 ---
 
-This README.md was automatically generated using the `generate_readme.py` script and the local qwen-cybersecurity-2.5-7b-gguf model.
