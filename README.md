@@ -1,13 +1,14 @@
 # SWE-Fixer: AI Assistant for Code Analysis and Correction
 
 ## 1. 📜 Project Overview
-SWE-Fixer is an AI assistant that automatically analyzes and corrects errors in code files (Python and Java) when commits are made to a Git repository. It uses a local language model (qwen-cybersecurity-2.5-7b-gguf) to detect issues such as unused variables, syntax errors, unreachable code, etc., and applies the suggested corrections.
+SWE-Fixer is an AI assistant that automatically analyzes and corrects errors in code files (Python and Java) when commits are made to a Git repository. It uses a local language model (Armandotrsg/qwen-cybersecurity-2.5-7b-gguf) to detect issues such as unused variables, syntax errors, unreachable code, etc., and applies the suggested corrections.
 
 ## 2. 📋 Prerequisites
 - Python 3.8 or higher
 - Git
 - Ollama (to run the local model)
 - Python virtual environment (venv)
+- Download model Armandotrsg/qwen-cybersecurity-2.5-7b-gguf from hugging face
 
 ## 3. 📁 Project Structure
 - `api_server.py`: Flask server that exposes the `/chat` endpoint to interact with the local model.
