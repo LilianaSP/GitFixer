@@ -75,7 +75,7 @@ The project is based on an automated workflow:
 4. **Making commits:**
    When you make commits, the hook will automatically analyze modified files and apply suggested corrections. For example:
    ```bash
-   git add HelloWorld.java && git commit -m "Test: Java file with syntax errors"
+   python githubTesting/GithubFixerTest/run_code_fixer_hook.py <Path to your cloned repository>
    ```
    Note: For making commits you have to your own repository and add file **run_code_fixer_hook.py** inside your folder of the github repository that you cloned. 
 
