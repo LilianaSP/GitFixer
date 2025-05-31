@@ -19,8 +19,9 @@ SWE-Fixer is an AI assistant that automatically analyzes and corrects errors in 
 The project is based on an automated workflow:
 1. When a commit is made, the Git hook (`git_hook.py`) detects the modified files.
 2. The hook sends the file contents to the Flask server (`api_server.py`).
-3. The server uses the local model (qwen-cybersecurity-2.5-7b-gguf) to analyze the code and generate correction suggestions.
+3. The server uses the local model (Armandotrsg/qwen-cybersecurity-2.5-7b-gguf) to analyze the code and generate correction suggestions.
 4. The hook applies the suggested corrections and makes a new commit with the changes.
+5. Hugging face link for the trained model: https://huggingface.co/Armandotrsg/qwen-cybersecurity-2.5-7b-gguf/tree/main
 
 ## 5. ⚙️ Setup and Installation
 1. **Obtaining the code:**
@@ -48,25 +49,34 @@ The project is based on an automated workflow:
 ## 6. ▶️ Running the Project
 1. **Starting the Flask server:**
    ```bash
+   cd GitFixer
+   ```
+   ```bash
+   source venv/bin/activate
+   ```
+   ```bash
    python api_server.py serve
    ```
    To restart the server (if needed):
    ```bash
    cd .. && pkill -f "python.*api_server.py" && source venv/bin/activate && python api_server.py serve
    ```
+   **Note:** Make sure you have port 7774 free, since this proyect runs in local host using this port.
+   
    Or, from the project root:
    ```bash
-   cd /Users/lisolorz/Desktop/huggingface && pkill -f "python.*api_server.py" && source venv/bin/activate && python api_server.py serve
+   cd /GitFixer && pkill -f "python.*api_server.py" && source venv/bin/activate && python api_server.py serve
    ```
 
-2. **Configuring the Git hook:**
+3. **Configuring the Git hook:**
    Ensure `git_hook.py` is set up as a post-commit hook in your repository.
 
-3. **Making commits:**
+4. **Making commits:**
    When you make commits, the hook will automatically analyze modified files and apply suggested corrections. For example:
    ```bash
    git add HelloWorld.java && git commit -m "Test: Java file with syntax errors"
    ```
+   Note: For making commits you have to your own repository and add file **run_code_fixer_hook.py** inside your folder of the github repository that you cloned. 
 
 ## 7. ✨ Usage Example
 To test the system, you can create a file with syntax errors, for example:
