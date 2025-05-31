@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWE-Fixer Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">SWE-Fixer Interface</h1>
+
+        <!-- Formulario de entrada -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Analizar Problema</h5>
+            </div>
+            <div class="card-body">
+                <form id="analysisForm" method="POST" action="/analyze">
+                    <div class="mb-3">
+                        <label for="issue" class="form-label">Descripción del Problema</label>
+                        <textarea class="form-control" id="issue" name="issue" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="code" class="form-label">Código a Analizar</label>
+                        <textarea class="form-control" id="code" name="code" rows="10" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Analizar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Resultados -->
+        {% if result %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Resultados del Análisis</h5>
+            </div>
+            <div class="card-body">
+                <!-- Problema -->
+                <div class="mb-4">
+                    <h6>Problema Identificado:</h6>
+                    <div class="alert alert-info">{{ result.problem }}</div>
+                </div>
+
+                <!-- Archivos a Modificar -->
+                <div class="mb-4">
+                    <h6>Archivos a Modificar:</h6>
+                    <ul class="list-group">
+                        {% for file in result.files_to_edit %}
+                        <li class="list-group-item">{{ file }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Solución Propuesta -->
+                <div class="mb-4">
+                    <h6>Solución Propuesta:</h6>
+                    <div class="card">
+                        <div class="card-body">
+                            <pre><code>{{ result.solution }}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explicación -->
+                <div class="mb-4">
+                    <h6>Explicación:</h6>
+                    <div class="alert alert-secondary">
+                        {{ result.explanation }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

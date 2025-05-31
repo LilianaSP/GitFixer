@@ -1,0 +1,15 @@
+agent:
+  model:
+    # Configuración para usar el servidor Flask local
+    name: openai/Armandotrsg/qwen-cybersecurity-2.5-7b-merged
+    api_base: http://127.0.0.1:7774
+    # No se requiere API key para el servidor local
+    api_key: null
+    per_instance_cost_limit: 0
+    total_cost_limit: 0
+    per_instance_call_limit: 100
+    max_input_tokens: 32000
+  tools:
+    parse_function:
+      type: "thought_action"
+  history_processors: []
